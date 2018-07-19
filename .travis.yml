@@ -1,0 +1,11 @@
+language: bash
+services: docker
+
+before_script:
+  - image="cast-highlight:latest"
+
+script:
+  - travis_retry docker build -t "$image" .
+
+after_script:
+  - docker images
