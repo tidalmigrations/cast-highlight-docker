@@ -1,0 +1,14 @@
+version: build-{build}.{branch}
+image: Visual Studio 2017
+
+environment:
+  image: cast-highlight:latest
+
+build_script:
+  - cmd: appveyor-retry docker build --pull -t $env:image
+
+after_build:
+  - cmd: docker images
+
+test_script:
+  - cmd: docker run --rm $env:image --printTechnos
