@@ -5,7 +5,7 @@ environment:
   image: cast-highlight:latest
 
 build_script:
-  - cmd: appveyor-retry docker build --pull -t %image%
+  - cmd: appveyor-retry docker build --pull -t %image% .
 
 after_build:
   - cmd: docker images
