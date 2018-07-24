@@ -1,4 +1,5 @@
-FROM openjdk:windowsservercore-1709
+FROM openjdk:windowsservercore-ltsc2016
+
 
 ENV PERL_VERSION 5.28.0.1
 ENV PERL_SHA1 22a773ae058119a02577e97447fa298926cee67e
