@@ -5,7 +5,7 @@ before_script:
   - image="cast-highlight:latest"
 
 script:
-  - travis_retry docker build -t "$image" .
+  - travis_retry docker build -t "$image" alpine
 
 after_script:
   - docker images
