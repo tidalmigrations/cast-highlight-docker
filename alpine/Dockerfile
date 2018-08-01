@@ -5,9 +5,12 @@ RUN apk add --no-cache \
     perl-json \
     perl-xml-twig
 
-ENV CLI_NAME Highlight-Automation-Command
-WORKDIR /app/$CLI_NAME
-RUN curl -SL https://casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
+ENV CLI_NAME=Highlight-Automation-Command
+ENV APP_DIR=/app/$CLI_NAME
+WORKDIR $APP_DIR
+RUN curl -sSL https://casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
     | tar xz -C /app
+COPY entrypoint.sh $APP_DIR
 
-ENTRYPOINT ["java", "-jar", "HighlightAutomation.jar"]
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["cast"]

@@ -5,6 +5,7 @@ before_script:
   - image="cast-highlight:latest"
 
 script:
+  - bash -c 'shopt -s globstar; shellcheck **/*.sh'
   - travis_retry docker build -t "$image" alpine
 
 after_script:
