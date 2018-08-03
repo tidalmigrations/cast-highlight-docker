@@ -1,6 +1,7 @@
 FROM openjdk:jre-alpine
 
 RUN apk add --no-cache \
+    bash \
     curl \
     perl-json \
     perl-xml-twig
