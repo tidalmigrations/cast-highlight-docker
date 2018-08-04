@@ -292,6 +292,7 @@ fi
 secrets=/secrets/.env
 if [ -z "$login" ] || [ -z "$password" ]; then
 	if [ -s "$secrets" ]; then
+		# shellcheck source=/dev/null
 		source "$secrets"
 		rm -f "$secrets"
 	fi
