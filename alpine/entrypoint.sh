@@ -14,8 +14,6 @@ sourceDir=
 workingDir=
 login=
 password=
-tmp=
-dialog=
 
 shift # Remove "cast" from arguments
 
@@ -279,16 +277,6 @@ if [ -z "$workingDir" ]; then
 	flags+=(--workingDir "$workingDir")
 fi
 
-if [ -d "$sourceDir/tmp" ]; then
-	tmp=$(mktemp -p "$sourceDir" -u tmp.XXXXXX)
-	mv "$sourceDir/tmp" "$tmp"
-fi
-
-if [ -d "$sourceDir/dialog" ]; then
-	dialog=$(mktemp -p "$sourceDir" -u dialog.XXXXXX)
-	mv "$sourceDir/dialog" "$dialog"
-fi
-
 secrets=/secrets/.env
 if [ -z "$login" ] || [ -z "$password" ]; then
 	if [ -s "$secrets" ]; then
@@ -306,10 +294,4 @@ if [ -z "$login" ] || [ -z "$password" ]; then
 	fi
 fi
 
-java -jar HighlightAutomation.jar "${flags[@]}"
-
-rm -rf "$sourceDir/tmp"
-test -n "$tmp" && mv "$tmp" "$sourceDir/tmp"
-
-rm -rf "$sourceDir/dialog"
-test -n "$dialog" && mv "$dialog" "$sourceDir/dialog"
+exec java -jar HighlightAutomation.jar "${flags[@]}"
