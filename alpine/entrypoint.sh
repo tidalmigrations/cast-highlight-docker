@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "DEBUG: $@"
+
 if [ "$1" != "cast" ]; then
 	exec "$@"
 fi
