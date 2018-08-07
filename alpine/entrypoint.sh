@@ -277,6 +277,7 @@ if [ -z "$workingDir" ]; then
 	flags+=(--workingDir "$workingDir")
 fi
 
+mkdir /secrets
 secrets=/secrets/.env
 if [ -z "$login" ] || [ -z "$password" ]; then
 	if [ -s "$secrets" ]; then
