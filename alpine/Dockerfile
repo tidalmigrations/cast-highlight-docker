@@ -13,6 +13,7 @@ WORKDIR $APP_DIR
 RUN curl -sSL https://casthighlight.com/tools/cli/${CLI_NAME}-${CLI_VERSION}.tar.gz \
     | tar xz -C /app
 COPY entrypoint.sh $APP_DIR
+RUN mkdir /secrets
 
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["cast"]
