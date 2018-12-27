@@ -8,6 +8,8 @@ Docker image packaging for CAST Highlight Automated Code Scan
 
 To release new docker image, make a commit to `master` in this repository and Google Code Build will deploy a new docker image to the registry `gcr.io/tidal-1529434400027/cast-highlight` with the `latest` tag.
 
+You should see a notification in Slack, #tidal-tools, regarding a successful image build. Alternatively, you can also check: https://console.cloud.google.com/cloud-build/builds?project=tidal-1529434400027
+
 ## Usage
 
 ```
