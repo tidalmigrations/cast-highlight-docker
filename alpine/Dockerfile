@@ -4,6 +4,7 @@ RUN apk add --no-cache \
     bash \
     curl \
     perl-json \
+    perl-xml-twig \
     perl-xml-libxml
 
 ENV CLI_NAME=Highlight-Automation-Command
