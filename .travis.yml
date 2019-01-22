@@ -3,6 +3,7 @@ services: docker
 
 before_script:
   - image="cast-highlight:latest"
+  - test_repo="https://github.com/tidalmigrations/schoolbus.git"
 
 script:
   - bash -c 'shopt -s globstar; shellcheck **/*.sh'
@@ -10,3 +11,5 @@ script:
 
 after_script:
   - docker images
+  - git clone -q "$test_repo" "$HOME/src"
+  - docker run --rm -v "$HOME/src":/src cast-highlight:latest cast --skipUpload --sourceDir /src
