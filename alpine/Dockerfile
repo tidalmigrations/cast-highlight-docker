@@ -7,7 +7,7 @@ RUN apk add --no-cache \
     perl-xml-libxml
 
 ENV CLI_NAME=Highlight-Automation-Command
-ENV CLI_VERSION=5.0.14
+ENV CLI_VERSION=5.0.16
 ENV APP_DIR=/app/$CLI_NAME
 WORKDIR $APP_DIR
 RUN curl -sSL https://casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
