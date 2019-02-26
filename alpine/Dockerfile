@@ -10,7 +10,7 @@ ENV CLI_NAME=Highlight-Automation-Command
 ENV CLI_VERSION=5.0.17
 ENV APP_DIR=/app/$CLI_NAME
 WORKDIR $APP_DIR
-RUN curl -sSL https://casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
+RUN curl -sSL https://doc.casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
     | tar xz -C /app
 COPY entrypoint.sh $APP_DIR
 RUN mkdir /secrets
