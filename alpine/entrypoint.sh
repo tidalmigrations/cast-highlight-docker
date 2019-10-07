@@ -20,7 +20,7 @@ shift # Remove "cast" from arguments
 while :; do
 	case $1 in
 		--help|--printTechnos)
-			flags=($1)
+			flags=("$1")
 			break
 			;;
 
