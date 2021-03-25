@@ -25,7 +25,7 @@ while :; do
 			;;
 
 		--sourceDir) # Takes an option argument; ensure it has been specified.
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				sourceDir=$2
 				flags+=("$1" "$2")
 				shift
@@ -35,14 +35,14 @@ while :; do
 			;;
 		--sourceDir=?*)
 			sourceDir=${1#*=} # Delete everything up to "=" and assign the remainder.
-			flags+=(--sourceDir "$sourceDir")
+			flags+=(--sourceDir "${sourceDir}")
 			;;
 		--sourceDir=) # Handle the case of empty --sourceDir=
 			die 'ERROR: "--sourceDir" requires a non-empty option argument.'
 			;;
 
 		--workingDir)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				workingDir=$2
 				flags+=("$1" "$2")
 				shift
@@ -52,14 +52,14 @@ while :; do
 			;;
 		--workingDir=?*)
 			workingDir=${1#*=}
-			flags+=(--workingDir "$workingDir")
+			flags+=(--workingDir "${workingDir}")
 			;;
 		--workingDir=)
 			die 'ERROR: "--workingDir" requires a non-empty option argument.'
 			;;
 
 		--technologies)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -68,14 +68,14 @@ while :; do
 			;;
 		--technologies=?*)
 			technologies=${1#*=}
-			flags+=(--technologies "$technologies")
+			flags+=(--technologies "${technologies}")
 			;;
 		--technologies=)
 			die 'ERROR: "--technologies" requires a non-empty option argument.'
 			;;
 
 		--ignoreDirectories)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -84,14 +84,14 @@ while :; do
 			;;
 		--ignoreDirectories=?*)
 			ignoreDirectories=${1#*=}
-			flags+=(--ignoreDirectories "$ignoreDirectories")
+			flags+=(--ignoreDirectories "${ignoreDirectories}")
 			;;
 		--ignoreDirectories=)
 			die 'ERROR: "--ignoreDirectories" requires a non-empty option argument.'
 			;;
 
 		--analyzeDir)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -100,14 +100,14 @@ while :; do
 			;;
 		--analyzeDir=?*)
 			analyzeDir=${1#*=}
-			flags+=(--analyzeDir "$analyzeDir")
+			flags+=(--analyzeDir "${analyzeDir}")
 			;;
 		--analyzeDir=)
 			die 'ERROR: "--analyzeDir" requires a non-empty option argument.'
 			;;
 
 		--perlInstallDir)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -116,14 +116,14 @@ while :; do
 			;;
 		--perlInstallDir=?*)
 			perlInstallDir=${1#*=}
-			flags+=(--perlInstallDir "$perlInstallDir")
+			flags+=(--perlInstallDir "${perlInstallDir}")
 			;;
 		--perlInstallDir=)
 			die 'ERROR: "--perlInstallDir" requires a non-empty option argument.'
 			;;
 
 		--keywordScan)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -132,7 +132,7 @@ while :; do
 			;;
 		--keywordScan=?*)
 			keywordScan=${1#*=}
-			flags+=(--keywordScan "$keywordScan")
+			flags+=(--keywordScan "${keywordScan}")
 			;;
 		--keywordScan=)
 			die 'ERROR: "--keywordScan" requires a non-empty option argument.'
@@ -143,7 +143,7 @@ while :; do
 			;;
 
 		--login)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				login=$2
 				flags+=("$1" "$2")
 				shift
@@ -153,14 +153,14 @@ while :; do
 			;;
 		--login=?*)
 			login=${1#*=}
-			flags+=(--login "$login")
+			flags+=(--login "${login}")
 			;;
 		--login=)
 			die 'ERROR: "--login" requires a non-empty option argument.'
 			;;
 
 		--password)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				password=$2
 				flags+=("$1" "$2")
 				shift
@@ -170,14 +170,14 @@ while :; do
 			;;
 		--password=?*)
 			password=${1#*=}
-			flags+=(--password "$password")
+			flags+=(--password "${password}")
 			;;
 		--password=)
 			die 'ERROR: "--password" requires a non-empty option argument.'
 			;;
 
 		--companyId)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				companyId=$2
 				flags+=("$1" "$2")
 				shift
@@ -187,14 +187,14 @@ while :; do
 			;;
 		--companyId=?*)
 			companyId=${1#*=}
-			flags+=(--companyId "$companyId")
+			flags+=(--companyId "${companyId}")
 			;;
 		--companyId=)
 			die 'ERROR: "--companyId" requires a non-empty option argument.'
 			;;
 
 		--applicationId)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -203,14 +203,14 @@ while :; do
 			;;
 		--applicationId=?*)
 			applicationId=${1#*=}
-			flags+=(--applicationId "$applicationId")
+			flags+=(--applicationId "${applicationId}")
 			;;
 		--applicationId=)
 			die 'ERROR: "--applicationId" requires a non-empty option argument.'
 			;;
 
 		--serverUrl)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -219,14 +219,14 @@ while :; do
 			;;
 		--serverUrl=?*)
 			serverUrl=${1#*=}
-			flags+=(--serverUrl "$serverUrl")
+			flags+=(--serverUrl "${serverUrl}")
 			;;
 		--serverUrl=)
 			die 'ERROR: "--serverUrl" requires a non-empty option argument.'
 			;;
 
 		--snapshotDatetime)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -235,14 +235,14 @@ while :; do
 			;;
 		--snapshotDatetime=?*)
 			snapshotDatetime=${1#*=}
-			flags+=(--snapshotDatetime "$snapshotDatetime")
+			flags+=(--snapshotDatetime "${snapshotDatetime}")
 			;;
 		--snapshotDatetime=)
 			die 'ERROR: "--snapshotDatetime" requires a non-empty option argument.'
 			;;
 
 		--snapshotLabel)
-			if [ "$2" ]; then
+			if [ -n "$2" ]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -251,12 +251,11 @@ while :; do
 			;;
 		--snapshotLabel=?*)
 			snapshotLabel=${1#*=}
-			flags+=(--snapshotLabel "$snapshotLabel")
+			flags+=(--snapshotLabel "${snapshotLabel}")
 			;;
 		--snapshotLabel=)
 			die 'ERROR: "--snapshotLabel" requires a non-empty option argument.'
 			;;
-
 
 		--) # End of all options.
 			shift
@@ -272,25 +271,25 @@ while :; do
 	shift
 done
 
-if [ -z "$workingDir" ]; then
+if [ -z "${workingDir}" ]; then
 	workingDir="/tmp"
-	flags+=(--workingDir "$workingDir")
+	flags+=(--workingDir "${workingDir}")
 fi
 
 secrets=/secrets/.env
-if [ -z "$login" ] || [ -z "$password" ]; then
-	if [ -s "$secrets" ]; then
+if [ -z "${login}" ] || [ -z "${password}" ]; then
+	if [ -s "${secrets}" ]; then
 		# shellcheck source=/dev/null
-		source "$secrets"
-		rm -f "$secrets"
+		source "${secrets}"
+		rm -f "${secrets}"
 	fi
 
-	if [ -n "$CAST_LOGIN" ]; then
-		flags+=(--login "$CAST_LOGIN")
+	if [ -n "${CAST_LOGIN:-}" ]; then
+		flags+=(--login "${CAST_LOGIN}")
 	fi
 
-	if [ -n "$CAST_PASSWORD" ]; then
-		flags+=(--password "$CAST_PASSWORD")
+	if [ -n "${CAST_PASSWORD:-}" ]; then
+		flags+=(--password "${CAST_PASSWORD}")
 	fi
 fi
 
