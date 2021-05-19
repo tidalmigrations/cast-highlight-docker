@@ -11,8 +11,6 @@ steps:
     docker build -t ${_DOCKER_IMAGE} .
     git clone ${_TEST_REPO} "$$HOME/src"
     docker run --rm -v "$$HOME/src":/src ${_DOCKER_IMAGE} cast --skipUpload --sourceDir /src
-  env:
-  - 'DOCKER_BUILDKIT=1'
 substitutions:
   _DOCKER_IMAGE: cast-highlight:latest
   _TEST_REPO: https://github.com/tidalmigrations/schoolbus.git
