@@ -1,4 +1,4 @@
-FROM openjdk:jre-alpine
+FROM --platform=$BUILDPLATFORM openjdk:jre-alpine
 
 RUN apk add --no-cache \
     bash \
