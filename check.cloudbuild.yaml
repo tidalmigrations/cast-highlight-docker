@@ -14,5 +14,5 @@ steps:
   env:
   - 'DOCKER_BUILDKIT=1'
 substitutions:
-  _DOCKER_IMAGE: cast-highlight:latests
+  _DOCKER_IMAGE: cast-highlight:latest
   _TEST_REPO: https://github.com/tidalmigrations/schoolbus.git
