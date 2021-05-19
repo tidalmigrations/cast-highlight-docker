@@ -9,7 +9,7 @@ RUN mkdir /app && curl -sSL https://doc.casthighlight.com/tools/cli/${CLI_NAME}.
 
 FROM openjdk:8-jre-slim
 ARG CLI_NAME
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml-libxml-perl \
     libjson-perl \
     && rm -rf /var/lib/apt/lists/* \
