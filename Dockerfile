@@ -1,12 +1,11 @@
 ARG CLI_NAME=Highlight-Automation-Command
 ARG CLI_VERSION=5.3.34
 
-FROM busybox AS builder
+FROM alpine AS builder
+RUN apk add --no-cache curl
 ARG CLI_NAME
-ADD https://doc.casthighlight.com/tools/cli/${CLI_NAME}.tar.gz .
-RUN mkdir /app \
-    && tar -xzv -C /app -f ${CLI_NAME}.tar.gz \
-    && rm ${CLI_NAME}.tar.gz
+RUN mkdir /app && curl -sSL https://doc.casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
+    | tar xz -C /app
 
 FROM openjdk:8-jre-slim
 ARG CLI_NAME
