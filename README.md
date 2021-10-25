@@ -11,7 +11,7 @@ You should see a notification in Slack, #tidal-tools, regarding a successful ima
 ## Usage
 
 ```
-$ docker build -t cast-highlight alpine
+$ docker build -t cast-highlight .
 
 $ docker run --rm \
   -v /path/to/sources:/src \
