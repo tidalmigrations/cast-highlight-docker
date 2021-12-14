@@ -30,14 +30,18 @@ steps:
     - '--platform'
     - '$_DOCKER_BUILDX_PLATFORMS'
     - '-t'
-    - 'gcr.io/$PROJECT_ID/cast-highlight:${BRANCH_NAME/master/latest}'
+    - 'gcr.io/$PROJECT_ID/cast-highlight:$_DOCKER_IMAGE_TAG'
     - '--push'
     - '.'
     id: 'build-multi-architecture-container-image'
 options:
   env:
     - 'DOCKER_CLI_EXPERIMENTAL=enabled'
+  options:
+    dynamic_substitutions: true
+
 substitutions:
   _DOCKER_TEST_IMAGE: cast-highlight:latest
   _TEST_REPO: https://github.com/tidalmigrations/schoolbus.git
   _DOCKER_BUILDX_PLATFORMS: 'linux/amd64,linux/arm64'
+  _DOCKER_IMAGE_TAG: ${BRANCH_NAME/master/latest}
