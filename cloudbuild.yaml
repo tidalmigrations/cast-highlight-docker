@@ -37,8 +37,7 @@ steps:
 options:
   env:
     - 'DOCKER_CLI_EXPERIMENTAL=enabled'
-  options:
-    dynamic_substitutions: true
+  dynamic_substitutions: true
 
 substitutions:
   _DOCKER_TEST_IMAGE: cast-highlight:latest
