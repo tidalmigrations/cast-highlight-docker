@@ -7,7 +7,7 @@ ARG CLI_NAME
 RUN mkdir /app && curl -sSL https://doc.casthighlight.com/tools/cli/${CLI_NAME}.tar.gz \
     | tar xz -C /app
 
-FROM openjdk:8-jre-slim
+FROM openjdk:8-jre-slim-buster
 ARG CLI_NAME
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml-libxml-perl \
