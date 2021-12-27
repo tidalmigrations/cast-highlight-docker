@@ -3,7 +3,30 @@ steps:
     args: ['--enable=all', 'entrypoint.sh']
     id: 'Check entrypoint script'
 
-  - name: 'google/cloud-sdk:slim'
+  - name: 'docker'
+    args: ['run', '--privileged', 'linuxkit/binfmt:v0.8']
+    id: 'initialize-qemu'
+  - name: 'docker'
+    args: ['buildx', 'create', '--name', 'mybuilder']
+    id: 'create-builder'
+  - name: 'docker'
+    args: ['buildx', 'use', 'mybuilder']
+    id: 'select-builder'
+  - name: 'docker'
+    args: ['buildx', 'inspect', '--bootstrap']
+    id: 'show-target-build-platforms'
+  - name: 'docker'
+    args:
+      - 'buildx'
+      - 'build'
+      - '--platform=$_DOCKER_BUILDX_PLATFORMS'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/cast-highlight:$_DOCKER_IMAGE_TAG'
+      - '--push'
+      - '.'
+    id: 'build-multi-architecture-container-image'
+
+  - name: 'google/cloud-sdk:alpine'
     entrypoint: 'bash'
     args:
       - '-eEuo'
