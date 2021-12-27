@@ -3,7 +3,7 @@ steps:
     args: ['--enable=all', 'entrypoint.sh']
     id: 'Check entrypoint script'
 
-  - name: 'google/cloud-sdk:alpine'
+  - name: 'google/cloud-sdk:slim'
     entrypoint: 'bash'
     args:
       - '-eEuo'
@@ -20,7 +20,7 @@ steps:
           --push .
     id: 'Build multi-arch container image'
 
-  - name: 'google/cloud-sdk:alpine'
+  - name: 'google/cloud-sdk:slim'
     entrypoint: 'bash'
     args:
       - '-eEuo'
