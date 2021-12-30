@@ -1,5 +1,5 @@
 ARG CLI_NAME=Highlight-Automation-Command
-ARG CLI_VERSION=5.3.74
+ARG CLI_VERSION=5.3.78
 
 FROM alpine AS builder
 RUN apk add --no-cache curl
@@ -9,7 +9,8 @@ RUN mkdir /app && curl -sSL https://doc.casthighlight.com/tools/cli/${CLI_NAME}.
 
 FROM openjdk:8-jre-slim-buster
 ARG CLI_NAME
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libxml-libxml-perl \
     libjson-perl \
     && rm -rf /var/lib/apt/lists/* \

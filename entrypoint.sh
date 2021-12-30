@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$1" != "cast" ]; then
+if [[ "$1" != "cast" ]]; then
 	exec "$@"
 fi
 
@@ -25,7 +25,7 @@ while :; do
 			;;
 
 		--sourceDir) # Takes an option argument; ensure it has been specified.
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				sourceDir=$2
 				flags+=("$1" "$2")
 				shift
@@ -42,7 +42,7 @@ while :; do
 			;;
 
 		--workingDir)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				workingDir=$2
 				flags+=("$1" "$2")
 				shift
@@ -59,7 +59,7 @@ while :; do
 			;;
 
 		--technologies)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -75,7 +75,7 @@ while :; do
 			;;
 
 		--ignoreDirectories)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -91,7 +91,7 @@ while :; do
 			;;
 
 		--analyzeDir)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -107,7 +107,7 @@ while :; do
 			;;
 
 		--perlInstallDir)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -123,7 +123,7 @@ while :; do
 			;;
 
 		--keywordScan)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -143,7 +143,7 @@ while :; do
 			;;
 
 		--login)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				login=$2
 				flags+=("$1" "$2")
 				shift
@@ -160,7 +160,7 @@ while :; do
 			;;
 
 		--password)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				password=$2
 				flags+=("$1" "$2")
 				shift
@@ -177,7 +177,7 @@ while :; do
 			;;
 
 		--companyId)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				companyId=$2
 				flags+=("$1" "$2")
 				shift
@@ -194,7 +194,7 @@ while :; do
 			;;
 
 		--applicationId)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -210,7 +210,7 @@ while :; do
 			;;
 
 		--serverUrl)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -226,7 +226,7 @@ while :; do
 			;;
 
 		--snapshotDatetime)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -242,7 +242,7 @@ while :; do
 			;;
 
 		--snapshotLabel)
-			if [ -n "$2" ]; then
+			if [[ -n "$2" ]]; then
 				flags+=("$1" "$2")
 				shift
 			else
@@ -271,24 +271,24 @@ while :; do
 	shift
 done
 
-if [ -z "${workingDir}" ]; then
+if [[ -z "${workingDir}" ]]; then
 	workingDir="/tmp"
 	flags+=(--workingDir "${workingDir}")
 fi
 
 secrets=/secrets/.env
-if [ -z "${login}" ] || [ -z "${password}" ]; then
-	if [ -s "${secrets}" ]; then
+if [[ -z "${login}" ]] || [[ -z "${password}" ]]; then
+	if [[ -s "${secrets}" ]]; then
 		# shellcheck source=/dev/null
 		source "${secrets}"
 		rm -f "${secrets}"
 	fi
 
-	if [ -n "${CAST_LOGIN:-}" ]; then
+	if [[ -n "${CAST_LOGIN:-}" ]]; then
 		flags+=(--login "${CAST_LOGIN}")
 	fi
 
-	if [ -n "${CAST_PASSWORD:-}" ]; then
+	if [[ -n "${CAST_PASSWORD:-}" ]]; then
 		flags+=(--password "${CAST_PASSWORD}")
 	fi
 fi
