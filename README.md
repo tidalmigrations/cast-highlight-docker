@@ -1,6 +1,40 @@
-# cast-highlight-docker
+# Tidal Source Code Analyzer
 
-Docker image packaging for CAST Highlight Automated Code Scan
+When doing source code analysis, Tidal Tools works together with the CAST highlight CPI to execute the analysis.
+
+## High level breakdown
+
+### Online
+
+1. Tidal Tools
+    - Exposes the source code analysis command `tidal analyze code --app-id <your-app-id>` (run from directory containing the source code)
+    - Handles authentication
+    - Hits your Tidal Migrations Workspace `GET apps/#id/cast`
+2. Tidal Migrations Platform
+    - Creates an app in CAST if it's not already present. This CAST app is now associated with your TMP app at the ID provided.
+    - Returns the CAST ID of the app which was created / the CAST ID of the existing CAST app if you're analyzing the same app again (premium users only).
+3. Tidal Tools
+    - Pulls docker image containing CAST Highlight CLI (that's why you're here)
+    - Runs the CAST CLI in this container
+4. CAST CLI
+    - Analyzes your app and uploads it to CAST with the CAST ID which TMP returned in step 2
+5. Tidal Tools
+    - After the analysis is completed successfully, Tidal Tools will notify TMP that the app has been analyzed
+6. Tidal Migrations Platform
+    - Starts a worker to check on the status of the analysis in CAST. This runs async and periodically checks to see if the analysis is complete
+    - When the analysis is complete, TMP gets the analysis data from CAST and updates your TMP app with the analysis information. This propagates to the frontend and the user is now able to see their source code analysis result when they view their app
+
+### Offline
+
+1. Tidal Tools
+    - Exposes the source code analysis command `tidal analyze code --app-id <your-app-id>` (run from directory containing the source code). Providing the `--app-id` here is optional. If provided, the ID is saved as a comment with the ZIP file.
+    - Runs the CAST CLI in a docker container (obtained from running `tidal backup` on an offline server then transferring this over, see [the guide](https://guides.tidalmg.com/tidal-offline.html#create-the-tidal-tools-archive-file-for-offline-use).).
+    - Saves the resulting ZIP file to the current directory, or to a path provided.
+2. The User
+    - Sends this result ZIP file to Tidal Support.
+3. Tidal Support
+    - Uploads the result ZIP file to CAST on behalf of the user.
+    - Manually triggers the association between the Tidal Migrations Platform app and the CAST app. 
 
 ## Releasing
 
@@ -8,7 +42,7 @@ To release new docker image, make a commit to `master` in this repository and Go
 
 You should see a notification in Slack, #tidal-tools, regarding a successful image build. Alternatively, you can also check: https://console.cloud.google.com/cloud-build/builds?project=tidal-1529434400027
 
-## Usage
+## Run the container independently
 
 ```
 $ docker build -t cast-highlight .
