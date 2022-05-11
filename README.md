@@ -1,6 +1,6 @@
 # Tidal Source Code Analyzer
 
-When doing source code analysis, Tidal Tools works together with the CAST highlight CPI to execute the analysis.
+When doing source code analysis, Tidal Tools works together with the [CAST Highlight CLI](https://www.castsoftware.com/products/highlight) to execute the analysis.
 
 ## High level breakdown
 
@@ -12,7 +12,7 @@ When doing source code analysis, Tidal Tools works together with the CAST highli
     - Hits your Tidal Migrations Workspace `GET apps/#id/cast`
 2. Tidal Migrations Platform
     - Creates an app in CAST if it's not already present. This CAST app is now associated with your TMP app at the ID provided.
-    - Returns the CAST ID of the app which was created / the CAST ID of the existing CAST app if you're analyzing the same app again (premium users only).
+    - Returns the CAST ID of the app which was created OR the CAST ID of the existing CAST app if you're analyzing the same app again (premium users only).
 3. Tidal Tools
     - Pulls docker image containing CAST Highlight CLI (that's why you're here)
     - Runs the CAST CLI in this container
