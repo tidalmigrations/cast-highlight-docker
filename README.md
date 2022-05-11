@@ -24,6 +24,8 @@ When doing source code analysis, Tidal Tools works together with the [CAST Highl
     - Starts a worker to check on the status of the analysis in CAST. This runs async and periodically checks to see if the analysis is complete
     - When the analysis is complete, TMP gets the analysis data from CAST and updates your TMP app with the analysis information. This propagates to the frontend and the user is now able to see their source code analysis result when they view their app
 
+![image](https://user-images.githubusercontent.com/43866616/167871482-c18c3fc3-86dd-49d2-a0e9-178a92a7757c.png)
+
 ### Offline
 
 1. Tidal Tools
@@ -35,6 +37,8 @@ When doing source code analysis, Tidal Tools works together with the [CAST Highl
 3. Tidal Support
     - Uploads the result ZIP file to CAST on behalf of the user.
     - Manually triggers the association between the Tidal Migrations Platform app and the CAST app.
+
+![image](https://user-images.githubusercontent.com/43866616/167871802-cb4f4ec6-375c-4a54-acf2-5602c9409222.png)
 
 ## Requirements
 - Docker 
