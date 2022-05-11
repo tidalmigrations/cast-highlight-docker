@@ -34,7 +34,14 @@ When doing source code analysis, Tidal Tools works together with the CAST highli
     - Sends this result ZIP file to Tidal Support.
 3. Tidal Support
     - Uploads the result ZIP file to CAST on behalf of the user.
-    - Manually triggers the association between the Tidal Migrations Platform app and the CAST app. 
+    - Manually triggers the association between the Tidal Migrations Platform app and the CAST app.
+
+## Requirements
+- Docker 
+- Gitlab
+    - Access to Tidal Tools repository [here](https://gitlab.com/subdata/tidal-tools)
+- GCP
+    - Images are stored in the [Container Registry](https://console.cloud.google.com/gcr/images/tidal-1529434400027/global/cast-highlight?authuser=1&project=tidal-1529434400027). You will need access to `Tidal Migrations` organization and to the `Tidal-Tools` project (id -> **tidal-1529434400027**)
 
 ## Releasing
 
