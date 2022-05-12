@@ -45,7 +45,7 @@ When doing source code analysis, Tidal Tools works together with the [CAST Highl
 - Gitlab
     - Access to Tidal Tools repository [here](https://gitlab.com/subdata/tidal-tools)
 - GCP
-    - Images are stored in the [Container Registry](https://console.cloud.google.com/gcr/images/tidal-1529434400027/global/cast-highlight?authuser=1&project=tidal-1529434400027). You will need access to `Tidal Migrations` organization and to the `Tidal-Tools` project (id -> **tidal-1529434400027**)
+    - Images are stored in the [Container Registry](https://console.cloud.google.com/gcr/images/tidal-1529434400027/global/cast-highlight?project=tidal-1529434400027). You will need access to `Tidal Migrations` organization and to the `Tidal-Tools` project (id -> **tidal-1529434400027**)
 
 ## Releasing
 
