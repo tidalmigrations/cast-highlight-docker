@@ -42,16 +42,39 @@ When doing source code analysis, Tidal Tools works together with the [CAST Highl
 
 ## Requirements
 - Docker 
-- Gitlab
-    - Access to Tidal Tools repository [here](https://gitlab.com/subdata/tidal-tools)
+- Github
+    - Access to Tidal Tools repository
 - GCP
-    - Images are stored in the [Container Registry](https://console.cloud.google.com/gcr/images/tidal-1529434400027/global/cast-highlight?project=tidal-1529434400027). You will need access to `Tidal Migrations` organization and to the `Tidal-Tools` project (id -> **tidal-1529434400027**)
+    - Images are stored in the **Container Registry**. You will need access to `Tidal Migrations` organization.
 
 ## Releasing
 
-To release new docker image, make a commit to `master` in this repository and Google Code Build will deploy a new docker image to the registry `gcr.io/tidal-1529434400027/cast-highlight` with the `latest` tag.
+To create a new docker image that can be downloaded (used) by Tidal Tools, you will need to push to the repository. We use Google Cloud Platform (cloud build) to automate the creation of these images.
 
-You should see a notification in Slack, #tidal-tools, regarding a successful image build. Alternatively, you can also check: https://console.cloud.google.com/cloud-build/builds?project=tidal-1529434400027
+1. From the default branch (master), create a new branch. The name of your new branch will be used to create/identify a new image in the GCP container registry. If you are creating a new image to upgrade to a new version of CAST Highlights, name your branch using its version. This will allows us to have a clear image history in case we ever need to "rollback".
+  
+    For example:
+    ```
+    git branch V5.4.18
+    ```
+
+    If you are upgrading the CAST CLI version, Please adjust the second line of the Dockerfile. CLI_VERSION refers to the CAST CLI version for your image and we use it in our dashboard to help us keep track of current vs new releases.
+
+2. Push your branch. The build trigger is invoked every time there is a push to this repository (any branch). During the process a new Docker container image is built and tagged as the following:
+    ```
+    gcr.io/tidal-1529434400027/cast-highlight:$BRANCH_NAME
+    Where $BRANCH_NAME corresponds to the git branch name. (ex, V5.4.18)
+    ```
+    You can find your new image in the GCP container registry, under cast-highlight repository.
+
+3. Done, you can now test this image out in Tidal Tools.
+
+4. If everything is ok. (Meaning, you are able to do source code analysis). Create a Pull Request to merge your branch into the default branch (master)
+
+    When your PR is merged, Cloud Build will create another image with the default tag: gcr.io/tidal-1529434400027/cast-highlight:latest
+
+5. That is all!
+
 
 ## Run the container independently
 
