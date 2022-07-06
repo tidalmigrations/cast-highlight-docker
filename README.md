@@ -55,7 +55,7 @@ To create a new docker image that can be downloaded (used) by Tidal Tools, you w
   
     For example:
     ```
-    git branch V5.4.18
+    git branch v5.4.18
     ```
 
     If you are upgrading the CAST CLI version, Please adjust the second line of the Dockerfile. CLI_VERSION refers to the CAST CLI version for your image and we use it in our dashboard to help us keep track of current vs new releases.
@@ -63,7 +63,7 @@ To create a new docker image that can be downloaded (used) by Tidal Tools, you w
 2. Push your branch. The build trigger is invoked every time there is a push to this repository (any branch). During the process a new Docker container image is built and tagged as the following:
     ```
     gcr.io/tidal-1529434400027/cast-highlight:$BRANCH_NAME
-    Where $BRANCH_NAME corresponds to the git branch name. (ex, V5.4.18)
+    Where $BRANCH_NAME corresponds to the git branch name. (ex, v5.4.18)
     ```
     You can find your new image in the GCP container registry, under cast-highlight repository.
 
