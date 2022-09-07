@@ -291,6 +291,10 @@ if [[ -z "${login}" ]] || [[ -z "${password}" ]]; then
 	if [[ -n "${CAST_PASSWORD:-}" ]]; then
 		flags+=(--password "${CAST_PASSWORD}")
 	fi
+
+	if [[ -n "${BASIC_AUTH:-}" ]]; then
+		flags+=(--basicAuth "${BASIC_AUTH}")
+	fi
 fi
 
 exec java -jar HighlightAutomation.jar "${flags[@]}"
