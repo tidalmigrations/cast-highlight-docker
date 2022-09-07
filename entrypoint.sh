@@ -14,7 +14,7 @@ sourceDir=
 workingDir=
 login=
 password=
-basicAuth=
+
 
 shift # Remove "cast" from arguments
 
