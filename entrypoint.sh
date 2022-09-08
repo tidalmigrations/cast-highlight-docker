@@ -142,6 +142,43 @@ while :; do
 			flags+=("$1")
 			;;
 
+		--zipResult)
+			if [[ -n "$2" ]]; then
+				flags+=("$1" "$2")
+				shift
+			else
+				die 'ERROR: "--zipResult" requires a non-empty option argument.'
+			fi
+			;;
+		--zipResult=?*)
+			zipResult=${1#*=}
+			flags+=(--zipResult "${zipResult}")
+			;;
+		--zipResult=)
+			die 'ERROR: "--zipResult" requires a non-empty option argument.'
+			;;
+
+		--uploadZipFile)
+			if [[ -n "$2" ]]; then
+				flags+=("$1" "$2")
+				shift
+			else
+				die 'ERROR: "--uploadZipFile" requires a non-empty option argument.'
+			fi
+			;;
+		--uploadZipFile=?*)
+			uploadZipFile=${1#*=}
+			flags+=(--uploadZipFile "${uploadZipFile}")
+			;;
+		--uploadZipFile=)
+			die 'ERROR: "--uploadZipFile" requires a non-empty option argument.'
+			;;
+
+
+		--analyzeBigFiles)
+			flags+=("$1")
+			;;
+
 		--login)
 			if [[ -n "$2" ]]; then
 				login=$2
