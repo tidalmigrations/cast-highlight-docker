@@ -15,7 +15,6 @@ workingDir=
 login=
 password=
 
-
 shift # Remove "cast" from arguments
 
 while :; do
@@ -140,6 +139,43 @@ while :; do
 			;;
 
 		--skipUpload)
+			flags+=("$1")
+			;;
+
+		--zipResult)
+			if [[ -n "$2" ]]; then
+				flags+=("$1" "$2")
+				shift
+			else
+				die 'ERROR: "--zipResult" requires a non-empty option argument.'
+			fi
+			;;
+		--zipResult=?*)
+			zipResult=${1#*=}
+			flags+=(--zipResult "${zipResult}")
+			;;
+		--zipResult=)
+			die 'ERROR: "--zipResult" requires a non-empty option argument.'
+			;;
+
+		--uploadZipFile)
+			if [[ -n "$2" ]]; then
+				flags+=("$1" "$2")
+				shift
+			else
+				die 'ERROR: "--uploadZipFile" requires a non-empty option argument.'
+			fi
+			;;
+		--uploadZipFile=?*)
+			uploadZipFile=${1#*=}
+			flags+=(--uploadZipFile "${uploadZipFile}")
+			;;
+		--uploadZipFile=)
+			die 'ERROR: "--uploadZipFile" requires a non-empty option argument.'
+			;;
+
+
+		--analyzeBigFiles)
 			flags+=("$1")
 			;;
 
@@ -291,10 +327,6 @@ if [[ -z "${login}" ]] || [[ -z "${password}" ]]; then
 
 	if [[ -n "${CAST_PASSWORD:-}" ]]; then
 		flags+=(--password "${CAST_PASSWORD}")
-	fi
-
-	if [[ -n "${BASIC_AUTH:-}" ]]; then
-		flags+=(--basicAuth "${BASIC_AUTH}")
 	fi
 fi
 
