@@ -1,5 +1,5 @@
 ARG CLI_NAME=Highlight-Automation-Command
-ARG CLI_VERSION=5.4.34
+ARG CLI_VERSION=5.4.35
 
 FROM alpine AS builder
 RUN apk add --no-cache curl
