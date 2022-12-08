@@ -71,7 +71,7 @@ To create a new docker image that can be downloaded (used) by Tidal Tools, you w
 
    You can find your new image in the GCP container registry, under cast-highlight repository.
 
-3. Done, you can now test this image out locally in Tidal Tools by manually adjusting the docker image used at line pkg/commands/analyze/code/code.go:25.
+3. Done, you can now test this image out locally in Tidal Tools by manually adjusting the docker image used [here](https://github.com/tidalmigrations/tidal-tools/blob/ff5d2bd9cd206f1f305a96d2a976a4a1f06cd59a/pkg/commands/analyze/code/code.go#L25).
 
 4. If everything is ok. (Meaning, you are able to do source code analysis). Create a Pull Request to merge your branch into the default branch (master)
 
