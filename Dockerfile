@@ -1,5 +1,5 @@
 ARG CLI_NAME=Highlight-Automation-Command
-ARG CLI_VERSION=5.4.53
+ARG CLI_VERSION=5.4.54
 
 
 FROM alpine AS builder
