@@ -1,4 +1,7 @@
-# Tidal Source Code Analyzer
+# Tidal Source Code Analyzer (NOT IN USE)
+
+| :exclamation:  Warning: We are not using CAST Highlight for Code analysis anymore. |
+|------------------------------------------------------------------------------------|
 
 When doing source code analysis, Tidal Tools works together with the [CAST Highlight CLI](https://www.castsoftware.com/products/highlight) to execute the analysis.
 
